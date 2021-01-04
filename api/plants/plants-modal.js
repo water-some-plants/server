@@ -32,3 +32,4 @@ async function burn(id) {
   await db("plant").where({ id }).del()
   return Promise.resolve(task)
 }
+//asoaspgkndspin
