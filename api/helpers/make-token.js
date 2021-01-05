@@ -1,16 +1,15 @@
 const jwt = require('jsonwebtoken')
-
+const { jwtSecret } = require('../auth/jwt-secret')
 const makeToken = ({ id, username }) => {
-    const payload = {
-      id,
-      username,
-    }
+     const payload = {
+       username,
+       subject: id,
+     }
     const options = {
-        expiresIn: '10h'
+      expiresIn: '8 hours',
     }
-    const secret = process.env.JWT_SECRET || 'secret'
 
-    return jwt.sign(payload, secret, options)
+    return jwt.sign(payload, jwtSecret, options)
 }
 
 module.exports = makeToken
