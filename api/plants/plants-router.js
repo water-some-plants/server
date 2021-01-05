@@ -48,6 +48,16 @@ router.post('/:id', async (req, res) => {
   }
 })
 
+router.get('/user/:id', (req, res) => {
+  plantsDb.findBy(req.params.id)
+  .then(plants => {
+    if (plants.length) {
+      res.json(plants)
+    } else {
+      res.json({ message: 'you dont have any plants'})
+    }
+  })
+})
 
 router.delete('/:id', async (req, res) => {
     try {

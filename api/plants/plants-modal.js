@@ -10,9 +10,7 @@ module.exports = {
 
 function findBy(id) {
     return db('plants as p')
-    .join('users as u', 'p.user_id', 'u.id')
-    .select('u.username', 'p.nickname', 'p.species', 'p.h2ofrequency', 'p.picture')
-    .where({'u.id': id})
+    .where({'p.user_id': id})
 }
   
 function getAllPlants() {
