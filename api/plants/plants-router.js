@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.post('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { nickname, species, h2o_frequency, picture, user_id } = req.body
 
   try {
