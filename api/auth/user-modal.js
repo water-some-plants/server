@@ -1,10 +1,11 @@
-const db = require("../data/db-config");
+const db = require("../../data/dbConfig");
 
 module.exports = {
   add,
   update,
-  findBy
-};
+  findBy,
+  findById
+}
 
 
   function findBy(filter) {
@@ -28,4 +29,8 @@ async function update(id, changes){
     } else{
         return Promise.resolve(null)
     }
+}
+
+function findById(id) {
+  return db('users').where({ id }).first()
 }
