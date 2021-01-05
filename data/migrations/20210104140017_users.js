@@ -28,7 +28,9 @@ exports.up = function(knex) {
       plants.string('picture', 250)
           
       plants.integer('user_id')
-          .notNullable();
+          .notNullable()
+          .references('id')
+          .inTable('users')
     })
   };
   

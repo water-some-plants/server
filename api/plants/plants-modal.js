@@ -2,20 +2,22 @@ const db = require("../../data/dbConfig");
 
 module.exports = {
   add, 
-  find,
+  findBy,
   update,
   burn//this is the delete function since it wouldnt let me name it delete
 };
 
-
-function find(id){
-    return db("plants as p")
-}
+function findBy(id) {
+    return db('plants as p')
+    .join('users as u', 'p.user_id', 'u.id')
+    .select('u.username', 'p.nickname', 'p.species', 'p.h2ofrequency', 'p.picture')
+    .where({'u.id': id})
+  }
 
 function add(plant){
-    const [id] = await db("plants").insert(task)
-    return db('plants').where({ id }).first()
-}
+    const [id] = await db("plants").insert(plant)//adds in the plant and collects the id that it is given
+    return db('plants').where({ id }).first()//returns the plant that was added
+}//this function requires that the plant being added be passed in as an object and the object needs to include the id of the user who is adding the plant
 
 async function update(id, changes){
   const count =  await db("plants").where({id}).update(changes)
