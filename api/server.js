@@ -14,5 +14,8 @@ server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api/plants', restricted,plantsRouter)
+server.use('/', (_, res) => {
+  res.json('welcome to our api')
+})
 
 module.exports = server
